@@ -1,0 +1,7 @@
+[user]
+  email = ale2793@hotmail.com
+  name = Alejandro Gonzalez
+
+[core]
+  editor = nvim
+  pager =

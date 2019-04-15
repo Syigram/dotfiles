@@ -33,6 +33,9 @@
 " A note on leaders: THe value of mapleader is used at the moment the mapping
 " is defined. This means that the current value of mapleader is not
 " necessarily the value that was used to define your mappings.
+"
+set encoding=utf-8
+
 nnoremap <SPACE> <Nop>
 
 let mapleader = " "
@@ -121,6 +124,9 @@ call plug#begin('~/.vim/plugged')
 "File Navigation"
 Plug 'scrooloose/nerdtree'
 
+"Code completion engine for Vim, also does some syntax checking
+Plug 'Valloric/YouCompleteMe'
+
 " Commands run in vim's virtual screen and don't pollute main shell
 Plug 'fcpg/vim-altscreen'
 
@@ -149,6 +155,12 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-latex/vim-latex'
 " Plug 'lervag/vimtex'
 
+"Markdown live preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
+
+"Additional Vim C++ syntax highlighting
+"Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'NLKNguyen/c-syntax.vim'
 " Dockerfile syntax highlighting
 Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim'}
 
@@ -160,6 +172,9 @@ Plug 'itchyny/lightline.vim'
 
 " Enables the . to repeat a plugin map
 Plug 'tpope/vim-repeat'
+
+" Atom-like multiple cursors
+"Plug 'terryma/vim-multiple-cursors'
 
 " Fuzzy finder, fzf is similar to Go To Anything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -274,6 +289,15 @@ endtry
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
 
+
+" Markdown-preview
+let g:mkdp_auto_start = 1
+let g:mkdp_browser = 'chrome'
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_port = '4321'
+"YouCompleteMe
+"let g:ycm_extra_conf_globlist = ['~/tfg/oxylus_github/*']
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:lightline = {
 "       \ 'colorscheme': 'wombat',
 "       \ }
@@ -313,20 +337,21 @@ inoremap <LocalLeader>txit \textit{
 
 nnoremap <leader>d dd
 nnoremap <leader>a ggVG
-nnoremap <leader>ev :vsp ~/.vimrc<cr>
+nnoremap <leader>vv :vsp ~/.vimrc<cr>
+nnoremap <leader>xv :sp ~/.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " au BufWritePost .vimrc so ~/.vimrc
 
 
-" nnoremap <leader>j 10j
-" nnoremap <leader>k 10k
-" nnoremap <leader>j 5j
-" nnoremap <leader>k 5k
+nnoremap <leader>l 10l
+nnoremap <leader>h 10h
+nnoremap <leader>j 7j
+nnoremap <leader>k 7k
 
-nnoremap <leader>h <C-w>h
-nnoremap <leader>l <C-w>l
-nnoremap <leader>k <C-w>k
-nnoremap <leader>j <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
 nnoremap <Leader>= <C-w>=
 nnoremap <Leader>> <C-w>10>
 nnoremap <Leader>< <C-w>10<
@@ -338,11 +363,15 @@ nnoremap <leader>Q :q!<cr>
 ""NERDTree: command for opening NERDTree file navigation
 " nnoremap <Leader>n :NERDTreeToggle<CR>
 " inoremap <LocalLeader>n <ESC>:NERDTreeToggle<CR>
-nnoremap <Leader>n :GFiles<CR>
-inoremap <LocalLeader>n <ESC>:GFiles<CR>
+nnoremap <Leader>p :GFiles<CR>
+nnoremap <Leader>o :Files<CR>
+nnoremap <Leader>l :Lines<CR>
+nnoremap <Leader>L :BLines<CR>
+inoremap <LocalLeader>p <ESC>:GFiles<CR>
 
 "" " Saving shortcuts with all it's variants
-inoremap <LocalLeader>s <ESC>:w<CR>a
+inoremap <LocalLeader>s <ESC>:w<CR>
+inoremap <LocalLeader>g <ESC>:w<CR>a
 " inoremap <LocalLeader>S <ESC>:wq<CR>
 " inoremap <LocalLeader>g <ESC>:w<CR>
 " inoremap <LocalLeader>G <ESC>:w<CR>:
@@ -366,6 +395,7 @@ nnoremap ; :
 
 " Map jk to <Esc> in order to reach normal mode faster "
 inoremap jk <Esc>
+inoremap kj <Esc>:w<CR>
 
 
 "This brings your cursor back to the EOL of the line above
@@ -399,7 +429,7 @@ nnoremap <C-b> <C-b>zz
 " Maintain cursor on middle screen
 "nnoremap k kzz
 "nnoremap j jzz
-nnoremap <ENTER> i<ENTER><ESC>
+nnoremap <ENTER> O<ESC>j
 nnoremap <DEL> i<DEL><ESC>l
 nnoremap <BS> i<BS><ESC>
 "nnoremap <SPACE> i<SPACE><ESC>l
@@ -441,7 +471,48 @@ nnoremap cp yap<S-}>p
 " nnoremap w wzz
 " nnoremap b bzz
 " nnoremap e ezz
+inoremap "" ""<ESC>i
+inoremap '' ''<ESC>i
+inoremap [[ []<ESC>i
+inoremap (( ()<ESC>i
+inoremap {{ {}<ESC>i
+inoremap [<CR> [<CR>]<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
+inoremap {<CR> {<CR>}<C-o>O
+inoremap ;; <END>;
+inoremap ;<CR> <END>;<CR>
+inoremap ,, <END>,
+" inoremap :: <END>: /* doesn't work when using C++ */
+inoremap :<CR> <END>:<CR>
+inoremap ,, <END>,
+nnoremap <Leader>mk :MarkdownPreview<CR>
 
+"Auto expanding
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
+
+
+nnoremap <Leader>cl :nohl<CR>
+
+
+imap <LocalLeader>. <C-R>=Semicolonfun()<CR>
+fun! Semicolonfun() "{{{
+  call setline(line('.'), substitute(getline('.'), '\s*$', ';', ''))
+  return "\<End>"
+endfunction "}}}
+
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  execute "normal! Go#endif /* " . gatename . " */"
+  normal! kk
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 
 " -------------
 " }}}
@@ -464,10 +535,9 @@ set noshowmode
 "au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 au BufRead,BufNewFile *.md setlocal textwidth=80
+
 set shortmess=a
 
 
 " }}}
-"
-"
 "

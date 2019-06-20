@@ -18,7 +18,8 @@
 
 ## Automatically start tmux on every bash session
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+  exec tmux;
+  exec zsh;
 fi
 ## ---
 
@@ -228,6 +229,8 @@ fi
 
 alias oxy='cd ~/tfg/oxylus_github/'
 alias inf='cd ~/tfg/informe/'
+alias memg='cd ~/src/memory_game/front_end/src/'
+alias openchess='cd ~/src/chess/src/; vim components/Board.js'
 
 # Make "vim" direct to nvim
 alias vim=nvim
@@ -239,9 +242,17 @@ alias l='ls -CF'
 #-------agonzalez's aliases -------
 alias t=tmux
 alias e=exit
+alias m=make
 alias q=exit
 alias v=nvim
 alias o=xdg-open
+
+alias envc='python -m venv .venv'
+alias enva='. .venv/bin/activate'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 alias g='git status '
 alias ga='git add '

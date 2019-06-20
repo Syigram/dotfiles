@@ -121,6 +121,7 @@ augroup END
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ervandew/supertab'
 "File Navigation"
 Plug 'scrooloose/nerdtree'
 
@@ -155,6 +156,9 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-latex/vim-latex'
 " Plug 'lervag/vimtex'
 
+" Emmet plugin
+Plug 'mattn/emmet-vim'
+
 "Markdown live preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 
@@ -179,6 +183,20 @@ Plug 'tpope/vim-repeat'
 " Fuzzy finder, fzf is similar to Go To Anything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+
+" Snippets for Vim
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'nginx/nginx', { 'rtp': 'contrib/vim' }
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
 "=============+++++++++++++TO TRYYYY++++++++++++===============
 " Plug 'airblade/vim-gitgutter'
 " Plug 'editorconfig/editorconfig-vim'
@@ -202,6 +220,7 @@ augroup indentation_sr
   autocmd Filetype * setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=8
   autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=8
   autocmd Filetype yaml setlocal indentkeys-=<:>
+  autocmd Filetype make setlocal noexpandtab softtabstop=0
 augroup END
 
 " }}}
@@ -239,10 +258,10 @@ augroup whitespace_color
   autocmd InsertLeave * highlight EOLWS ctermbg=red guibg=red
 augroup END
 
-augroup fix_whitespace_save
-  autocmd!
-  autocmd BufWritePre * call TrimWhitespace()
-augroup END
+" augroup fix_whitespace_save
+"   autocmd!
+"   autocmd BufWritePre * call TrimWhitespace()
+" augroup END
 
 " }}}
 " General: Syntax highlighting ---------------- {{{
@@ -289,6 +308,22 @@ endtry
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
 
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger ="<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetsDir = "~/.vim/plugged/vim-snippets/UltiSnips"
+
+" vertically split ultisnips edit window
+let g:UltiSnipsEditSplit="vertical"
+
+" let g:UltiSnipsSnippetDirectories=["my_snippets"]
 
 " Markdown-preview
 let g:mkdp_auto_start = 1
@@ -330,9 +365,11 @@ let g:jedi#rename_command = "<leader>r"
 
 " Put your key remappings here
 " Prefer nnoremap to nmap, inoremap to imap, and vnoremap to vmap
-
+nnoremap <Leader>xs <C-w>j:q<CR>
 
 "" ------- Leaders -------------
+nnoremap <Leader>pf :echo @%<CR>
+
 inoremap <LocalLeader>txit \textit{
 
 nnoremap <leader>d dd
@@ -345,8 +382,10 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>l 10l
 nnoremap <leader>h 10h
-nnoremap <leader>j 7j
-nnoremap <leader>k 7k
+nnoremap <leader>j 5j
+nnoremap <leader>k 5k
+vnoremap <leader>j 5j
+vnoremap <leader>k 5k
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -361,12 +400,13 @@ nnoremap <leader>Q :q!<cr>
 
 
 ""NERDTree: command for opening NERDTree file navigation
-" nnoremap <Leader>n :NERDTreeToggle<CR>
-" inoremap <LocalLeader>n <ESC>:NERDTreeToggle<CR>
-nnoremap <Leader>p :GFiles<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+inoremap <LocalLeader>nt <ESC>:NERDTreeToggle<CR>
+nnoremap <Leader>pp :GFiles<CR>
 nnoremap <Leader>o :Files<CR>
 nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>L :BLines<CR>
+nnoremap <Leader>ag :Ag<CR>
 inoremap <LocalLeader>p <ESC>:GFiles<CR>
 
 "" " Saving shortcuts with all it's variants
@@ -377,7 +417,10 @@ inoremap <LocalLeader>g <ESC>:w<CR>a
 " inoremap <LocalLeader>G <ESC>:w<CR>:
 
 nnoremap <Leader>ss :w<CR>
-nnoremap <Leader>S :wq<CR>
+nnoremap <Leader>si :w<CR>i
+inoremap <LocalLeader>ss <C-o>:w<CR>
+inoremap <LocalLeader>se <C-o>:w
+
 " nnoremap <Leader>g :w<CR>a
 " nnoremap <Leader> :w<CR>:
 
@@ -431,7 +474,7 @@ nnoremap <C-b> <C-b>zz
 "nnoremap j jzz
 nnoremap <ENTER> O<ESC>j
 nnoremap <DEL> i<DEL><ESC>l
-nnoremap <BS> i<BS><ESC>
+nnoremap <BS> a<BS><ESC>
 "nnoremap <SPACE> i<SPACE><ESC>l
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
@@ -449,7 +492,25 @@ nnoremap <leader>q :q<cr>
 
 nnoremap <S-k> gt
 nnoremap <S-j> gT
+nnoremap <Leader>1 1gt;
+nnoremap <Leader>2 2gt;
+nnoremap <Leader>3 3gt;
+nnoremap <Leader>4 4gt;
+nnoremap <Leader>5 5gt;
+nnoremap <Leader>6 6gt;
+nnoremap <Leader>7 7gt;
+nnoremap <Leader>8 8gt;
+nnoremap <Leader>9 9gt;
+nnoremap <Leader>00 10gt;
+nnoremap <Leader>01 11gt;
+nnoremap <Leader>02 12gt;
 
+nnoremap <Leader>P :bprev<CR>
+nnoremap <Leader>N :bnext<CR>
+
+
+" Ctrl + R visual mode: You will be prompted to enter text to replace with.
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " This will copy the paragraph your cursor is on, then paste a copy of
 " it just below.
@@ -484,7 +545,6 @@ inoremap ;<CR> <END>;<CR>
 inoremap ,, <END>,
 " inoremap :: <END>: /* doesn't work when using C++ */
 inoremap :<CR> <END>:<CR>
-inoremap ,, <END>,
 nnoremap <Leader>mk :MarkdownPreview<CR>
 
 "Auto expanding
@@ -495,8 +555,19 @@ inoremap {, {<CR>},<C-c>O
 inoremap [; [<CR>];<C-c>O
 inoremap [, [<CR>],<C-c>O
 
+" Tab and pane navigation from INSERT mode
+inoremap <LocalLeader><S-k> <Esc>gt
+inoremap <LocalLeader><S-j> <Esc>gT
+inoremap <LocalLeader><C-l> <Esc><C-w>l
+inoremap <LocalLeader><C-k> <Esc><C-w>k
+inoremap <LocalLeader><C-j> <Esc><C-w>j
+inoremap <LocalLeader><C-h> <Esc><C-w>h
+
 
 nnoremap <Leader>cl :nohl<CR>
+
+"Open UltiSnips edit function
+nnoremap <leader>ue :UltiSnipsEdit<cr>
 
 
 imap <LocalLeader>. <C-R>=Semicolonfun()<CR>
@@ -541,3 +612,14 @@ set shortmess=a
 
 " }}}
 "
+" Functions
+" Go to last active tab
+
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
+
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+

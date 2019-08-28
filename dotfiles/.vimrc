@@ -388,7 +388,7 @@ nnoremap <Leader>pf :echo @%<CR>
 
 inoremap <LocalLeader>txit \textit{
 
-nnoremap <leader>d dd
+" nnoremap <leader>d dd
 nnoremap <leader>a ggVG
 nnoremap <leader>vv :vsp ~/.vimrc<cr>
 nnoremap <leader>xv :sp ~/.vimrc<cr>
@@ -403,10 +403,10 @@ nnoremap <leader>k 5k
 vnoremap <leader>j 5j
 vnoremap <leader>k 5k
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 nnoremap <Leader>= <C-w>=
 nnoremap <Leader>> <C-w>10>
 nnoremap <Leader>< <C-w>10<

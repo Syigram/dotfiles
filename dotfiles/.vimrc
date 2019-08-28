@@ -194,8 +194,14 @@ Plug 'nginx/nginx', { 'rtp': 'contrib/vim' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'martinda/Jenkinsfile-vim-syntax'
+
+
+
+" Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
 
 "=============+++++++++++++TO TRYYYY++++++++++++===============
 " Plug 'airblade/vim-gitgutter'

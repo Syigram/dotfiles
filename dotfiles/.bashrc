@@ -228,6 +228,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias oxy='cd ~/tfg/oxylus_github/'
+alias oxl='v -S ~/.vim/sessions/main.vim'
 alias inf='cd ~/tfg/informe/'
 alias memg='cd ~/src/memory_game/front_end/src/'
 alias openchess='cd ~/src/chess/src/; vim components/Board.js'
@@ -239,7 +240,7 @@ alias vim=nvim
 alias ll='ls -alF'
 alias l='ls -CF'
 
-#-------agonzalez's aliases -------
+#====== agonzalez's aliases =======
 alias t=tmux
 alias e=exit
 alias m=make
@@ -263,7 +264,16 @@ alias gco='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 
-#====== agonzalez's aliases =======
+#====== python aliases =======
+
+alias pr='python main.py'
+
+#====== kip aliases =======
+
+alias kips3='cd ~/repositories/KIP-S3-To-S3-Transfer'
+alias kipsftp='cd ~/repositories/KIP-SFTP-To-S3-Transfer'
+alias kipredshift='cd ~/repositories/KIP-S3-To-Redshift-Ingestion'
+
 
 # Set copy/paste helper functions
 # the perl step removes the final newline from the output

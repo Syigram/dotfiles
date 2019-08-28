@@ -144,7 +144,7 @@ Plug 'hdima/python-syntax'
 Plug 'hynek/vim-python-pep8-indent'
 
 "Javascript and JSX beautifier"
-Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'ckarnell/Antonys-macro-repeater'

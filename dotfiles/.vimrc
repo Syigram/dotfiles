@@ -520,8 +520,8 @@ nnoremap <Leader>00 10gt;
 nnoremap <Leader>01 11gt;
 nnoremap <Leader>02 12gt;
 
-nnoremap <Leader>P :bprev<CR>
-nnoremap <Leader>N :bnext<CR>
+nnoremap <Leader>pw :bprev<CR>
+nnoremap <Leader>nw :bnext<CR>
 
 
 " Ctrl + R visual mode: You will be prompted to enter text to replace with.

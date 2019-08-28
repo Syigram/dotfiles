@@ -365,6 +365,17 @@ let g:jedi#rename_command = "<leader>r"
 "  Plugin: Configure NERDtree ------------ {{{
 " Will add config later
 
+" Make NERDtree start when calling vim with no args
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Close current tab when NERDtree is the only thing left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let NERDTreeAutoDeleteBuffer = 1
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 "  }}}
 " General: Key remappings ----------------------- {{{
 

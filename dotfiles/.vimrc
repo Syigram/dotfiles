@@ -348,7 +348,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " Open module, e.g. :Pyimport os (opens the os module)
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0
-let g:jedi#auto_close_doc = 0
+let g:jedi#auto_close_doc = 1
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#force_py_version = 3
 

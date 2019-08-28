@@ -638,3 +638,108 @@ vnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 
+
+" ViM Memo {{{
+"
+" Register
+" ========
+"
+" list registers                    -> :reg
+" record motion to register a       -> qa
+" stop recording                    -> q
+" play motion in register a         -> @a
+" paste register a content          -> "ap
+" copy current line to register a   -> "ayy
+" append curent line to register a  -> "Ayy
+"
+" Jumps
+" =====
+"
+" list jumps                        -> :jumps
+" go to older jumps                 -> <jump number> C-o
+" go to newer jumps                 -> <jump number> C-i
+"
+" Last edited line                  -> g;
+" Previous edited line              -> g,
+"
+" Marks
+" =====
+"
+" list marks                        -> :marks
+" set mark a                        -> ma
+" go to line mark a                 -> 'a
+" go to caractere in line mark a    -> `a
+" previous mark                     -> [' or [`
+" next mark                         -> ]' or ]`
+"
+" Splits
+" ======
+"
+" split horizontaly                 -> :sp
+" split verticaly                   -> :vs
+" fold horizontal splits            -> <C-w-_>
+" fold vertical splits              -> <C-w-|>
+" unfold all splits                 -> <C-w-=>
+"
+" Rename buffer
+" =============
+"
+" to rename a buffer use            -> :file <new buffer name>
+"
+" Paste to vim command line
+" =========================
+"
+" paste from default register       -> <C-R> "
+" paste from another register       -> <C-R> <register>
+" paste from clipboard              -> <C-R><C-O> "
+"                                or -> <Shift-Insert>
+"
+" Spell
+" =====
+"
+" start spell check                 -> set spell
+" go to previous error              -> [s
+" go to next error                  -> ]s
+" see suggestions list              -> z=
+" add to dictionary                 -> zg
+"
+" }}}
+"*****************************************************************************
+"" Convenience variables
+"*****************************************************************************
+
+" vim-airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif

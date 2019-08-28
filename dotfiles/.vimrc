@@ -214,7 +214,6 @@ Plug 'dense-analysis/ale'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-eunuch'
 " Plug 'tpope/vim-surround'
-" Plug 'w0rp/ale'
 "=============+++++++++++++TO TRYYYY++++++++++++===============
 call plug#end()
 

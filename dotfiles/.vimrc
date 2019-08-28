@@ -454,11 +454,10 @@ nnoremap ; :
 
 " Map jk to <Esc> in order to reach normal mode faster "
 inoremap jk <Esc>
-inoremap kj <Esc>:w<CR>
-
+inoremap kj <Esc>
 
 "This brings your cursor back to the EOL of the line above
-inoremap <LocalLeader>u <esc>ka
+inoremap <LocalLeader>u <esc>kA
 
 " Changes the word under cursor.
 " You can press . to apply the command to the next match.

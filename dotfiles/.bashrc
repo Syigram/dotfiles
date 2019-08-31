@@ -17,10 +17,10 @@
 #######################################################################
 
 ## Automatically start tmux on every bash session
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux;
-  exec zsh;
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux;
+#   exec zsh;
+# fi
 ## ---
 
 
@@ -247,6 +247,8 @@ alias m=make
 alias q=exit
 alias v=nvim
 alias o=xdg-open
+
+alias sshlol='ssh sygram@latinlol -p 17171'
 
 alias envc='python -m venv .venv'
 alias enva='. .venv/bin/activate'

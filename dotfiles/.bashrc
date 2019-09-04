@@ -55,6 +55,16 @@ path_radd() {
   fi
 }
 
+clear_and_list(){
+  if [[ -n $1 ]]; then
+    clear
+    ls -alhF --color=auto | grep -i $1
+  else
+    clear
+    ls -alhF --color=auto
+  fi
+}
+
 # }}}
 # Exported variable: LS_COLORS --- {{{
 

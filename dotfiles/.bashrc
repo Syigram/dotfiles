@@ -55,16 +55,6 @@ path_radd() {
   fi
 }
 
-clear_and_list(){
-  if [[ -n $1 ]]; then
-    clear
-    ls -alhF --color=auto | grep -i $1
-  else
-    clear
-    ls -alhF --color=auto
-  fi
-}
-
 # }}}
 # Exported variable: LS_COLORS --- {{{
 
@@ -157,7 +147,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # tmuxinator
 export EDITOR=vim
-export SHELL=bash
+export SHELL=zsh
 
 # environment variable controlling difference between HI-DPI / Non HI_DPI
 # turn off because it messes up my pdf tooling
@@ -228,7 +218,7 @@ stty -ixon
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
+  alias ls='clear; ls -F --color=auto'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 
@@ -249,6 +239,7 @@ alias vim=nvim
 # ls aliases
 alias ll='ls -alF'
 alias l='ls -CF'
+alias cl='clear_and_list'
 
 #====== agonzalez's aliases =======
 alias t=tmux
@@ -307,6 +298,16 @@ clubhouse() {
 # Reload bashrc
 so() {
   source ~/.bashrc
+}
+
+clear_and_list(){
+  if [[ -n $1 ]]; then
+    clear
+    ls -alhF --color=auto | grep -i $1
+  else
+    clear
+    ls -alhF --color=auto
+  fi
 }
 
 # }}}

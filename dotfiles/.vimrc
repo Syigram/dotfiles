@@ -64,6 +64,8 @@ set completeopt=menuone,longest,preview
 " Enable buffer deletion instead of having to write each buffer
 set hidden
 
+set nospell
+
 "Automatically interfaces with the system's clipboard
 " set clipboard to unnamed to use * (PRIMARY, on select)
 "           set to unnamedplus to use +(CLIPBOARD, ^C)
@@ -72,6 +74,8 @@ set clipboard=unnamedplus
 
 " Mouse: enable GUI mouse support in all modes
 set mouse=a
+
+" set switchbuf=newtab
 
 " Set column to light grey at 80 characters
 if (exists('+colorcolumn'))
@@ -143,6 +147,8 @@ Plug 'hdima/python-syntax'
 " Indentation
 Plug 'hynek/vim-python-pep8-indent'
 
+Plug 'plasticboy/vim-markdown'
+
 "Javascript and JSX beautifier"
 Plug 'jelera/vim-javascript-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -156,11 +162,13 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-latex/vim-latex'
 " Plug 'lervag/vimtex'
 
+" basic vim/terraform integration by hashivim
+Plug 'hashivim/vim-terraform'
 " Emmet plugin
 Plug 'mattn/emmet-vim'
 
 "Markdown live preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 
 "Additional Vim C++ syntax highlighting
 "Plug 'octol/vim-cpp-enhanced-highlight'
@@ -173,6 +181,9 @@ Plug 'tpope/vim-surround'
 
 "A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
+
+" A vim plugin to display the indention levels with thin vertical lines
+Plug 'Yggdroot/indentLine'
 
 " Enables the . to repeat a plugin map
 Plug 'tpope/vim-repeat'
@@ -202,6 +213,43 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
+
+" Black -- File Formatter
+Plug 'pappasam/vim-filetype-formatter'
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh',
+"   \ }
+
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'branch': 'release/1.x',
+"   \ 'for': [
+"     \ 'javascript',
+"     \ 'typescript',
+"     \ 'css',
+"     \ 'less',
+"     \ 'scss',
+"     \ 'json',
+"     \ 'graphql',
+"     \ 'markdown',
+"     \ 'vue',
+"     \ 'lua',
+"     \ 'php',
+"     \ 'python',
+"     \ 'ruby',
+"     \ 'html',
+"     \ 'swift' ] }
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'branch': 'release/1.x'
+" }
+
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
 
 "=============+++++++++++++TO TRYYYY++++++++++++===============
 " Plug 'airblade/vim-gitgutter'
@@ -341,26 +389,71 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:lightline = {
 "       \ 'colorscheme': 'wombat',
 "       \ }
+"
+augroup filetype_formatter
+  autocmd!
+  autocmd FileType * vnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
+  autocmd FileType * nnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
+augroup END
 
 "  }}}
+"  Plugin: Configure LSP------------ {{{
+
+
+" let g:LanguageClient_serverCommands = {
+"       \ 'python': ['jedi-language-server'],
+"       \ 'python.jinja2': ['jedi-language-server'],
+"       \ }
+
+" let g:LanguageClient_rootMarkers = {
+"       \ 'go': ['go.mod', 'go.sum'],
+"       \ 'gomod': ['go.mod', 'go.sum'],
+"       \ 'python': ['pyproject.toml', 'poetry.lock'],
+"       \ }
+
+" let g:LanguageClient_autoStart = v:true
+" let g:LanguageClient_hoverPreview = 'Always'
+" let g:LanguageClient_diagnosticsEnable = v:false
+" let g:LanguageClient_selectionUI = 'quickfix'
+" function! CustomLanguageClientConfig()
+"   nnoremap <buffer> <leader>gd :call LanguageClient#textDocument_definition()<CR>
+"   nnoremap <buffer> <leader>gk :call LanguageClient#textDocument_hover()<CR>
+"   nnoremap <buffer> <leader>re :call LanguageClient#textDocument_rename()<CR>
+"   nnoremap <buffer> <leader>ff :call LanguageClient#textDocument_formatting()<CR>
+"   nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR>
+"   nnoremap <buffer> <leader>sa :call LanguageClient#textDocument_codeAction()<CR>
+"   nnoremap <buffer> <leader>gs :call LanguageClient#textDocument_documentSymbol()<CR>
+"   nnoremap <buffer> <leader>sc :call LanguageClient_contextMenu()<CR>
+"   setlocal omnifunc=LanguageClient#complete
+" endfunction
+" augroup languageclient_on_vim_startup
+"   autocmd!
+"   execute 'autocmd FileType '
+"         \ . join(keys(g:LanguageClient_serverCommands), ',')
+"         \ . ' call CustomLanguageClientConfig()'
+" augroup END
+
+
+" }}}
 "  Plugin: Configure Jedi-Vim------------ {{{
 " Python:
 " Open module, e.g. :Pyimport os (opens the os module)
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0
-let g:jedi#auto_close_doc = 1
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#force_py_version = 3
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#auto_close_doc = 1
+" let g:jedi#smart_auto_mappings = 0
+" let g:jedi#force_py_version = 3
 
-" mappings
-" auto_vim_configuration creates space between where vim is opened and
-" closed in my bash terminal. This is annoying, so I disable and manually
-" configure. See 'set completeopt' in my global config for my settings
+" " mappings
+" " auto_vim_configuration creates space between where vim is opened and
+" " closed in my bash terminal. This is annoying, so I disable and manually
+" " configure. See 'set completeopt' in my global config for my settings
 let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_command = "<C-]>"
-let g:jedi#documentation_command = "<leader>sd"
+let g:jedi#goto_assignments_command = "<leader>ga"
+let g:jedi#goto_command = "<leader>gt"
+let g:jedi#goto_definitions_command = "<leader>gd"
+let g:jedi#documentation_command = "<leader>gk"
 let g:jedi#usages_command = "<leader>su"
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#rename_command = "<leader>re"
 "  }}}
 "  Plugin: Configure NERDtree ------------ {{{
 " Will add config later
@@ -379,9 +472,17 @@ let NERDTreeDirArrows = 1
 "  }}}
 " General: Key remappings ----------------------- {{{
 
+" Omnicompletion:
+inoremap <C-@> <C-x><C-o>
+inoremap <C-space> <C-x><C-o>
+
+
 " Put your key remappings here
 " Prefer nnoremap to nmap, inoremap to imap, and vnoremap to vmap
 nnoremap <Leader>xs <C-w>j:q<CR>
+
+" Use \ to go to insert mode at the END of the WORD
+nnoremap \ Ea
 
 "" ------- Leaders -------------
 nnoremap <Leader>pf :echo @%<CR>
@@ -391,17 +492,17 @@ inoremap <LocalLeader>txit \textit{
 " nnoremap <leader>d dd
 nnoremap <leader>a ggVG
 nnoremap <leader>vv :vsp ~/.vimrc<cr>
-nnoremap <leader>xv :sp ~/.vimrc<cr>
+nnoremap <leader>tv :tabe ~/.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " au BufWritePost .vimrc so ~/.vimrc
 
 
 nnoremap <leader>l 10l
 nnoremap <leader>h 10h
-nnoremap <leader>j 5j
-nnoremap <leader>k 5k
-vnoremap <leader>j 5j
-vnoremap <leader>k 5k
+nnoremap <leader>j 10j
+nnoremap <leader>k 10k
+vnoremap <leader>j 10j
+vnoremap <leader>k 10k
 
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
@@ -468,8 +569,8 @@ nnoremap <Leader>C *``cgN
 
 " Deletes de word under cursor.
 " Same pattern as above.
-nnoremap <Leader>d *``dgn
-nnoremap <Leader>D *``dgN
+" nnoremap <Leader>d *``dgn
+" nnoremap <Leader>D *``dgN
 
 nnoremap <Leader><Space> zz
 
@@ -507,6 +608,8 @@ nnoremap <leader>q :q<cr>
 
 nnoremap <S-k> gt
 nnoremap <S-j> gT
+nnoremap <S-h> :bprev<CR>
+nnoremap <S-l> :bnext<CR>
 nnoremap <Leader>1 1gt;
 nnoremap <Leader>2 2gt;
 nnoremap <Leader>3 3gt;
@@ -524,6 +627,11 @@ nnoremap <Leader>pw :bprev<CR>
 nnoremap <Leader>nw :bnext<CR>
 
 
+" ---Deletes----
+" Delete space at EOL
+nnoremap <Leader>de $xk
+
+
 " Ctrl + R visual mode: You will be prompted to enter text to replace with.
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
@@ -535,6 +643,8 @@ nnoremap cp yap<S-}>p
 " Aligns a whole paragraph.
 "nnoremap <leader>= =ip
 
+nnoremap n nzz
+nnoremap N Nzz
 " nnoremap p pzz
 " nnoremap P Pzz
 " nnoremap G Gzz
@@ -578,6 +688,14 @@ inoremap <LocalLeader><C-k> <Esc><C-w>k
 inoremap <LocalLeader><C-j> <Esc><C-w>j
 inoremap <LocalLeader><C-h> <Esc><C-w>h
 
+"------------ Expanding ---------
+
+" HTML
+inoremap <LocalLeader>p <p><CR></p><C-o>O<Tab>
+
+
+
+
 
 nnoremap <Leader>cl :nohl<CR>
 
@@ -601,6 +719,19 @@ endfunction
 autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 
 " -------------
+" }}}
+" General: Abbreviations ----------------------- {{{
+
+ab \? &iquest;
+ab \a &aacute;
+ab \e &eacute;
+ab \i &iacute;
+ab \o &oacute;
+ab \u &uacute;
+ab \- &mdash;
+ab nh &ntilde;
+ab ishell <i>shell</i>
+
 " }}}
 " General: Cleanup ------------------ {{{
 " commands that need to run at the end of my vimrc
@@ -636,7 +767,9 @@ vnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
 
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-
+"This mapping will first open the item under the cursor in a new
+"window using <C-W><Enter> and then move it to an new tab using <C-W>T"
+autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
 
 
 " ViM Memo {{{

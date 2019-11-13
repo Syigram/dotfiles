@@ -731,6 +731,7 @@ ab \u &uacute;
 ab \- &mdash;
 ab nh &ntilde;
 ab ishell <i>shell</i>
+ab 'a á
 
 " }}}
 " General: Cleanup ------------------ {{{

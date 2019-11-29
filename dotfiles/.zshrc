@@ -1,6 +1,7 @@
 # fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 fpath+=("$HOME/.zsh/pure")
 # fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+# fpath+=("$HOME/.zfunctions" $fpath)
 
 autoload -U promptinit; promptinit
 
@@ -75,7 +76,4 @@ fi
 
 # . $HOME/repos/.asdf/completions/asdf.bash
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-

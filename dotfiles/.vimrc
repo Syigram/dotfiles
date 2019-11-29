@@ -222,7 +222,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'dense-analysis/ale'
 
 " Black -- File Formatter
-Plug 'pappasam/vim-filetype-formatter'
+" Plug 'pappasam/vim-filetype-formatter'
 
 " Plug 'autozimu/LanguageClient-neovim', {
 "   \ 'branch': 'next',
@@ -397,11 +397,11 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "       \ 'colorscheme': 'wombat',
 "       \ }
 "
-augroup filetype_formatter
-  autocmd!
-  autocmd FileType * vnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
-  autocmd FileType * nnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
-augroup END
+" augroup filetype_formatter
+"   autocmd!
+"   autocmd FileType * vnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
+"   autocmd FileType * nnoremap <buffer> <silent> <leader>fo :FiletypeFormat<cr>
+" augroup END
 
 "  }}}
 "  Plugin: Configure LSP------------ {{{

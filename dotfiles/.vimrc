@@ -293,6 +293,26 @@ augroup indentation_sr
   autocmd Filetype make setlocal noexpandtab softtabstop=0
 augroup END
 
+augroup drupal_module
+  autocmd!
+  autocmd BufRead,BufNewFile *.module set filetype=php
+  autocmd BufRead,BufNewFile *.install set filetype=php
+  autocmd BufRead,BufNewFile *.test set filetype=php
+  autocmd BufRead,BufNewFile *.inc set filetype=php
+  autocmd BufRead,BufNewFile *.profile set filetype=php
+  autocmd BufRead,BufNewFile *.view set filetype=php
+augroup END
+
+augroup json_files
+  autocmd!
+  autocmd BufRead,BufNewFile *.lock set filetype=json
+augroup END
+
+augroup drupal_files
+  autocmd!
+  autocmd BufNewFile,BufRead *.module,*.inc,*.php setlocal expandtab tabstop=2 shiftwidth=2 autoindent smartindent
+augroup END
+
 " }}}
 " General: Folding Settings --------------- {{{
 

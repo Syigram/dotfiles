@@ -66,6 +66,10 @@ set hidden
 
 set nospell
 
+set ignorecase
+
+" set keymap=accents
+
 "Automatically interfaces with the system's clipboard
 " set clipboard to unnamed to use * (PRIMARY, on select)
 "           set to unnamedplus to use +(CLIPBOARD, ^C)
@@ -154,7 +158,7 @@ Plug 'hdima/python-syntax'
 " Indentation
 Plug 'hynek/vim-python-pep8-indent'
 
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 
 "Javascript and JSX beautifier"
 Plug 'jelera/vim-javascript-syntax'
@@ -176,6 +180,8 @@ Plug 'mattn/emmet-vim'
 
 "Markdown live preview
 " Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 "Additional Vim C++ syntax highlighting
 "Plug 'octol/vim-cpp-enhanced-highlight'
@@ -217,12 +223,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 
+Plug 'nelsyeung/twig.vim'
+
 
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 
 " Black -- File Formatter
 Plug 'pappasam/vim-filetype-formatter'
+
+Plug 'christoomey/vim-tmux-navigator'
 
 " Plug 'autozimu/LanguageClient-neovim', {
 "   \ 'branch': 'next',
@@ -387,9 +397,14 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Markdown-preview
 let g:mkdp_auto_start = 1
-let g:mkdp_browser = 'chrome'
+let g:mkdp_browser = 'firefox'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = '4321'
+
+" ALE linter options
+let g:ale_phpcs_standard='Drupal'
+
+
 "YouCompleteMe
 "let g:ycm_extra_conf_globlist = ['~/tfg/oxylus_github/*']
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -510,14 +525,17 @@ nnoremap <leader>j 10j
 nnoremap <leader>k 10k
 vnoremap <leader>j 10j
 vnoremap <leader>k 10k
+"
+" nnoremap <silent> <C-j> :wincmd j<CR>
+" nnoremap <silent> <C-k> :wincmd k<CR>
+" nnoremap <silent> <C-h> :wincmd h<CR>
+" nnoremap <silent> <C-l> :wincmd l<CR>
 
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
 nnoremap <Leader>= <C-w>=
 nnoremap <Leader>> <C-w>10>
 nnoremap <Leader>< <C-w>10<
+
+" vnoremap yy yygv
 
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
@@ -612,6 +630,7 @@ vnoremap Q :norm @q<cr>
 " Quit files with leader q
 nnoremap <leader>q :q<cr>
 
+nnoremap <silent> vv <C-w>v
 
 nnoremap <S-k> gt
 nnoremap <S-j> gT
@@ -709,8 +728,8 @@ nnoremap <Leader>cl :nohl<CR>
 "Open UltiSnips edit function
 nnoremap <leader>ue :UltiSnipsEdit<cr>
 
-
 imap <LocalLeader>. <C-R>=Semicolonfun()<CR>
+
 fun! Semicolonfun() "{{{
   call setline(line('.'), substitute(getline('.'), '\s*$', ';', ''))
   return "\<End>"
@@ -884,3 +903,8 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>

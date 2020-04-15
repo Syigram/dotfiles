@@ -1,5 +1,5 @@
 # fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
-fpath+=('/home/sygram/.zsh/pure')
+fpath+=('/$HOME/.zsh/pure')
 
 autoload -U promptinit; promptinit
 
@@ -9,21 +9,24 @@ compinit
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
 
-prompt pure
+# prompt pure
 
-source ~/.zsh/zplug/init.zsh
+# source ~/.zsh/zplug/init.zsh
+source /usr/local/opt/zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+#Install plugins if there are plugins that have not been installed
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
 
 # zplug load --verbose
 zplug load
@@ -36,6 +39,8 @@ zplug load
 [ -f ~/.zsh/functions.zsh ] && source ~/.zsh/functions.zsh
 [ -f ~/.zsh/keybindings.zsh ] && source ~/.zsh/keybindings.zsh
 
+[ -f $HOME/repos/.asdf/asdf.sh ] && source $HOME/repos/.asdf/asdf.sh
+[ -f $HOME/repos/.asdf/completions/asdf.bash ] && source $HOME/repos/.asdf/completions/asdf.bash
 
 PYENV_ROOT="$HOME/.pyenv"
 if [ -d "$PYENV_ROOT" ]; then
@@ -70,11 +75,16 @@ fi
 
 # . $HOME/.asdf/completions/asdf.bash
 
-. $HOME/repos/.asdf/asdf.sh
+# JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/"
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+path_radd "$JAVA_HOME/bin"
+path_radd "/Users/alegonza10/Downloads/apache-maven-3.6.3/bin"
 
-. $HOME/repos/.asdf/completions/asdf.bash
-
+export api_trace_tool_username="trace.tool.api@sapient.nissanpace.com"
+export api_trace_tool_password="SKc-86b-pw3-rM3!"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+
+. /usr/local/opt/asdf/asdf.sh

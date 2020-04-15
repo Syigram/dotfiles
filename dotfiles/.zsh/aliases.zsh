@@ -2,7 +2,7 @@
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='clear; ls -CF --color=auto'
+  alias ls='clear; ls -CFG --color=auto'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 
@@ -21,8 +21,10 @@ alias openchess='cd ~/src/chess/src/; vim components/Board.js'
 alias vim=nvim
 
 # ls aliases
-alias l='ls -lF'
-alias ll='ls -alF'
+alias ls='ls -CFG'
+alias lsl='clear; ls -CFG'
+alias l='clear; ls -al'
+alias ll='ls -al'
 alias cl='clear_and_list'
 alias -g G='| grep'
 
@@ -63,8 +65,8 @@ alias pr='python main.py'
 
 # Set copy/paste helper functions
 # the perl step removes the final newline from the output
-alias pbcopy="perl -pe 'chomp if eof' | xsel --clipboard --input"
-alias pbpaste="xsel --clipboard --output"
+# alias pbcopy="perl -pe 'chomp if eof' | xsel --clipboard --input"
+# alias pbpaste="xsel --clipboard --output"
 
 
 
@@ -96,3 +98,13 @@ alias zrc='nvim $HOME/.zshrc'
 alias zal='nvim $HOME/.zsh/aliases.zsh'
 alias zfu='nvim $HOME/.zsh/functions.zsh'
 alias zsrc='source $HOME/.zshrc'
+
+
+
+
+
+#====== directories =======
+
+alias golat="cd ~/Sites/latinlol.composer/web"
+alias gotest="cd ~/Sites/devdesktop/drupal-8.8.1"
+alias firefox='open -a "Firefox Developer Edition" '

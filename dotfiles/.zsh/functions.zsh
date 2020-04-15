@@ -226,3 +226,11 @@ function apt_over_https() {
       software-properties-common
 }
 
+
+
+function envdrupal() {
+  export PHP_ID="php7_3"
+  path_ladd "/Applications/DevDesktop/php7_3_x64/bin"
+  path_ladd "/Applications/DevDesktop/mysql/bin"
+  path_ladd "/Applications/DevDesktop/tools"
+}

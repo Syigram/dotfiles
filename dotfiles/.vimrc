@@ -141,7 +141,7 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 
 "Code completion engine for Vim, also does some syntax checking
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 " Commands run in vim's virtual screen and don't pollute main shell
 Plug 'fcpg/vim-altscreen'
@@ -191,7 +191,6 @@ Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim'}
 
 " Surroundings -- parentheses, brackets, quotes, XML tags, etc...
 Plug 'tpope/vim-surround'
-
 "A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
 
@@ -222,6 +221,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
+" PHP complete plugin
+Plug 'shawncplus/phpcomplete.vim'
 
 Plug 'nelsyeung/twig.vim'
 
@@ -538,6 +539,12 @@ nnoremap <leader>tv :tabe ~/.vimrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " au BufWritePost .vimrc so ~/.vimrc
 
+" nnoremap <S-u> ddp
+" nnoremap <S-i> ddkP
+" nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
+
+" vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
+
 
 nnoremap <leader>l 10l
 nnoremap <leader>h 10h
@@ -792,6 +799,8 @@ set secure
 set noshowcmd
 
 set noswapfile
+set nobackup
+set nowritebackup
 
 set noshowmode
 
@@ -817,6 +826,19 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 "This mapping will first open the item under the cursor in a new
 "window using <C-W><Enter> and then move it to an new tab using <C-W>T"
 autocmd FileType qf nnoremap <buffer> <Enter> <C-W><Enter><C-W>T
+
+if has("autocmd")
+  " Drupal *.module and *.install files.
+  augroup module
+    autocmd BufRead,BufNewFile *.module set filetype=php
+    autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.test set filetype=php
+    autocmd BufRead,BufNewFile *.inc set filetype=php
+    autocmd BufRead,BufNewFile *.profile set filetype=php
+    autocmd BufRead,BufNewFile *.view set filetype=php
+  augroup END
+endif
+syntax on
 
 
 " ViM Memo {{{

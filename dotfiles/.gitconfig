@@ -1,5 +1,5 @@
 [user]
-  email = ale2793@hotmail.com
+	email = sygramdev@gmail.com
   name = Alejandro Gonzalez
 
 [core]
@@ -11,6 +11,7 @@
   ci = commit
   st = status
   br = branch
+  pu = push -u
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   wow = log --all --graph --decorate --oneline --simplify-by-decoration --full-history
   type = cat-file -t

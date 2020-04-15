@@ -21,8 +21,8 @@ alias openchess='cd ~/src/chess/src/; vim components/Board.js'
 alias vim=nvim
 
 # ls aliases
+alias l='ls -lF'
 alias ll='ls -alF'
-alias l='ls -CF'
 alias cl='clear_and_list'
 alias -g G='| grep'
 
@@ -31,6 +31,7 @@ alias t=tmux
 alias e=exit
 alias m=make
 alias q=exit
+alias p=python
 alias v=nvim
 alias o=xdg-open
 
@@ -47,6 +48,7 @@ alias g='git status '
 alias ga='git add '
 alias gb='git branch '
 alias gc='git commit'
+alias gco='git checkout'
 alias gd='git diff'
 alias gcb='git checkout -b'
 alias go='git checkout'
@@ -66,6 +68,10 @@ alias pbpaste="xsel --clipboard --output"
 
 
 
+#====== utilities =======
+
+alias gensshkey="ssh-keygen -t rsa -b 4096 -C 'sygramdev@gmail.com'"
+alias inst="sudo apt-get -y install "
 
 #====== directories =======
 
@@ -76,3 +82,17 @@ alias kipredshift="cd ${REPOS_DIR}/KIP-S3-To-Redshift-Ingestion"
 alias kipterra="cd ${REPOS_DIR}/kepler-terraform"
 alias kipdocs="cd ${REPOS_DIR}/TDS-Docs"
 alias kipgoog="cd ${REPOS_DIR}/KIP-Googlesheet-Ingestion"
+alias devlol="cd /var/www/html/drupal/web"
+
+
+
+#====== vim =======
+
+alias vrc='nvim $HOME/.vimrc'
+
+#====== zsh =======
+
+alias zrc='nvim $HOME/.zshrc'
+alias zal='nvim $HOME/.zsh/aliases.zsh'
+alias zfu='nvim $HOME/.zsh/functions.zsh'
+alias zsrc='source $HOME/.zshrc'

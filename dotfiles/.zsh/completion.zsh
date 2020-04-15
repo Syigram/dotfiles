@@ -163,7 +163,7 @@ abk=(
     '...'  '../..'
     '....' '../../..'
     'bg'   '& exit'
-    'c'    '| wc -l '
+    'w'    '| wc -l '
     's'    '|& grep -i '
     'h'    '| head '
     'hl'   ' --help |& less -r '    #d (Display help in pager)
@@ -176,7 +176,7 @@ abk=(
     'su'   '| sort -u'
     't'    '| tail'
     'v'    '|& vim -'
-    'x'    'xclip -in -selection clipboard < '
+    'c'    'xclip -in -selection clipboard < '
 #A# end
     'co'   './configure && make && sudo make install'
 )

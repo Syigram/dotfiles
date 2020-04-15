@@ -13,6 +13,8 @@ bindkey '^N' down-history
 
 bindkey '^O' forward-char
 
+bindkey '^Y' clear-screen
+
 # alt+<- | alt+->
 bindkey "^[f" forward-word
 bindkey "^[b" backward-word

@@ -1,3 +1,21 @@
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#         # ...
+# elif [[ "$OSTYPE" == "darwin"* ]]; then
+#         # Mac OSX
+# elif [[ "$OSTYPE" == "cygwin" ]]; then
+#         # POSIX compatibility layer and Linux environment emulation for Windows
+# elif [[ "$OSTYPE" == "msys" ]]; then
+#         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+# elif [[ "$OSTYPE" == "win32" ]]; then
+#         # I'm not sure this can happen.
+# elif [[ "$OSTYPE" == "freebsd"* ]]; then
+#         # ...
+# else
+#         # Unknown.
+# fi
+
+
+#
 # Clubhouse story template
 function clubhouse() {
   echo -e "## Objective\n## Value\n## Acceptance Criteria" | pbcopy
@@ -36,6 +54,20 @@ function poetry_add_all(){
   for item in $(cat $1); do
     poetry add "${item}"
   done
+}
+
+function copysshkey() {
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then #linux
+    xclip -in -selection clipboard < $1
+    echo "Ran: xclip -in -selection < $1"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then #MacOS
+    pbcopy < $1
+    echo "Ran: pbcopy < $1"
+  elif [[ "$OSTYPE" == "cygwin" ]]; then
+          # POSIX compatibility layer and Linux environment emulation for Windows
+  elif [[ "$OSTYPE" == "msys" ]]; then
+          # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+  fi
 }
 
 
@@ -137,3 +169,37 @@ function extract() {
     echo "\`$1' is not a valid file"
   fi
 }
+
+
+function install_drupal_8_php() {
+  sudo apt -y install php
+  sudo apt -y install php-cli
+  sudo apt -y install php-mysql
+  sudo apt -y install php-json
+  sudo apt -y install php-opcache
+  sudo apt -y install php-xml
+  sudo apt -y install php-mbstring
+  sudo apt -y install php-gd
+  sudo apt -y install php-curl
+  sudo apt -y install libapache2-mod-php
+  sudo apt -y install php-intl
+  sudo apt -y install php-soap
+  sudo apt -y install php-zip
+}
+
+function install_pyenv_dependencies() {
+  sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+  xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+
+}
+
+function apt_over_https() {
+  sudo apt-get install -y \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg-agent \
+      software-properties-common
+}
+

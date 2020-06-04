@@ -194,6 +194,9 @@ Plug 'tpope/vim-surround'
 "A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
 
+" Provides an overview of the structure of the code
+Plug 'yegappan/taglist'
+
 " A vim plugin to display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
 
@@ -497,6 +500,7 @@ let g:jedi#goto_definitions_command = "<leader>gd"
 let g:jedi#documentation_command = "<leader>gk"
 let g:jedi#usages_command = "<leader>su"
 let g:jedi#rename_command = "<leader>re"
+let g:jedi#popup_on_dot = 0
 "  }}}
 "  Plugin: Configure NERDtree ------------ {{{
 " Will add config later
@@ -512,6 +516,10 @@ let NERDTreeAutoDeleteBuffer = 1
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
+
+
 "  }}}
 " General: Key remappings ----------------------- {{{
 
@@ -548,10 +556,10 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>l 10l
 nnoremap <leader>h 10h
-nnoremap <leader>j 10j
-nnoremap <leader>k 10k
-vnoremap <leader>j 10j
-vnoremap <leader>k 10k
+nnoremap <leader>j 7j
+nnoremap <leader>k 7k
+vnoremap <leader>j 7j
+vnoremap <leader>k 7k
 "
 " nnoremap <silent> <C-j> :wincmd j<CR>
 " nnoremap <silent> <C-k> :wincmd k<CR>
@@ -567,6 +575,7 @@ nnoremap <Leader>< <C-w>10<
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 
+nnoremap <leader>tl :TlistToggle<cr>
 
 ""NERDTree: command for opening NERDTree file navigation
 nnoremap <Leader>nt :NERDTreeToggle<CR>
@@ -747,6 +756,11 @@ inoremap <LocalLeader><C-h> <Esc><C-w>h
 inoremap <LocalLeader>p <p><CR></p><C-o>O<Tab>
 
 
+
+" ============= Markdown Mappings ================
+
+nnoremap <Leader>** i**<ESC>ea**<ESC>
+nnoremap <Leader>__ i_<ESC>ea_<ESC>
 
 
 

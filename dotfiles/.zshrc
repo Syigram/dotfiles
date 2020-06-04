@@ -77,6 +77,14 @@ fi
 
 # JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/"
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+
+
+# Flags needed for compiling psycopg2 on macOS
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+
 path_radd "$JAVA_HOME/bin"
 path_radd "/Users/alegonza10/Downloads/apache-maven-3.6.3/bin"
 

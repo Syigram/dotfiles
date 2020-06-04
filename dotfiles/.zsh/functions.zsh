@@ -1,22 +1,36 @@
 # Reminder Function - Similar to a todo
 
 function reminder() {
-  echo "(1) Before developing on Drupal, run command: envdrupal"
-  echo "(2) Recommended way for installing Drupal modules:\n  - Download with Composer\n  - Install with drush en module_name"
-  echo "(3) drush cache-rebuild: it's the new cc all"
+  case $1 in
+    drupal)
+      echo "(1) Before developing on Drupal, run command: envdrupal"
+      echo "(2) Recommended way for installing Drupal modules:\n  - Download with Composer\n  - Install with drush en module_name"
+      echo "(3) drush cache-rebuild: it's the new cc all"
+      ;;
+    python)
+      echo "(1) For using pyscopg2 you need to install apt package libpq-dev"
+      ;;
+    *)
+      echo "Valid values: drupal, python"
+      ;;
+  esac
+
 }
 
 function tips() {
-    case $1 in
-       drupal)
-         echo "drush en module_name: to enable modules"
-         echo "drush cache-rebuild: rebuilds cache"
-         ;;
-       vim)
-         echo ":help preview-window => for showing code previews and docs"
-         ;;
-       *.exe)       cabextract $1  ;;
-     esac
+
+  case $1 in
+    drupal)
+      echo "drush en module_name: to enable modules"
+      echo "drush cache-rebuild: rebuilds cache"
+      ;;
+    vim)
+      echo ":help preview-window => for showing code previews and docs"
+      ;;
+    *)
+      echo "Valid values: drupal, vim"
+      ;;
+  esac
 
 }
 

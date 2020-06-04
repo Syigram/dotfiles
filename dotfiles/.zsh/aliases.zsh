@@ -71,7 +71,7 @@ alias pbpaste="xsel --clipboard --output"
 #====== utilities =======
 
 alias gensshkey="ssh-keygen -t rsa -b 4096 -C 'sygramdev@gmail.com'"
-alias inst="sudo apt-get -y install "
+alias i="sudo apt-get -y install "
 
 #====== directories =======
 

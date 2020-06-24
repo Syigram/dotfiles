@@ -53,6 +53,7 @@ alias go='git checkout'
 alias gom='git checkout master'
 alias gk='gitk --all&'
 alias gx='gitx --all'
+alias gpu='git push -u'
 
 #====== python =======
 

@@ -68,6 +68,8 @@ if [ -d "$YARN_LOC" ]; then
   path_ladd "$YARN_LOC"
 fi
 
+path_radd "/usr/sbin"
+
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash

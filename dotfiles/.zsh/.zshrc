@@ -69,8 +69,10 @@ if [ -d "$YARN_LOC" ]; then
   path_ladd "$YARN_LOC"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+path_radd "/usr/local/sbin"
+
 
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

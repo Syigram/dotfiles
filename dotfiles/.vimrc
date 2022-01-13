@@ -405,6 +405,8 @@ let g:python_highlight_all = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_path_to_python_interpreter = '$HOME/sygram/.asdf/shims/python'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"

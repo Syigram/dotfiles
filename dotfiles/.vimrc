@@ -324,8 +324,8 @@ augroup fold_settings
   autocmd FileType vim setlocal foldmethod=marker
   autocmd FileType vim setlocal foldlevelstart=0
   autocmd FileType * setlocal foldnestmax=1
-  autocmd BufNewFile,BufRead .bashrc,.tmux.conf setlocal foldmethod=marker
-  autocmd BufNewFile,BufRead .bashrc,.tmux.conf setlocal foldlevelstart=0
+  autocmd BufNewFile,BufRead .bashrc,.tmux.conf,*.txt setlocal foldmethod=marker
+  autocmd BufNewFile,BufRead .bashrc,.tmux.conf,*.txt setlocal foldlevelstart=0
 augroup END
 
 " }}}
@@ -684,7 +684,7 @@ nnoremap <Leader>nw :bnext<CR>
 
 " ---Deletes----
 " Delete space at EOL
-nnoremap <Leader>de $xk
+nnoremap <Leader>de $xj
 
 
 " Ctrl + R visual mode: You will be prompted to enter text to replace with.
@@ -743,6 +743,22 @@ inoremap <LocalLeader><C-k> <Esc><C-w>k
 inoremap <LocalLeader><C-j> <Esc><C-w>j
 inoremap <LocalLeader><C-h> <Esc><C-w>h
 
+
+" Session handling
+
+" Session creation
+" :mks ~/.vim/sessions/rooster.vim
+
+" The next time you’re ready to start working on that project,
+" source that session file within vim:
+" :source ~/.vim/sessions/rooster.vim
+
+" Or open it when you run vim using the -S flag:
+" vim -S ~/.vim/sessions/rooster.vim
+"
+
+
+
 "------------ Expanding ---------
 
 " HTML
@@ -792,6 +808,8 @@ ab \- &mdash;
 ab nh &ntilde;
 ab ishell <i>shell</i>
 ab 'a á
+
+let @l = 'f,a'
 
 " }}}
 " General: Cleanup ------------------ {{{

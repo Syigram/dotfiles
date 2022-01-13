@@ -39,6 +39,7 @@ alias sshlol='ssh sygram@latinlol -p 17171'
 
 alias envc='python -m venv .venv'
 alias enva='. .venv/bin/activate'
+alias envb='cd .. && enva && cd -'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -72,6 +73,7 @@ alias pbpaste="xsel --clipboard --output"
 
 alias gensshkey="ssh-keygen -t rsa -b 4096 -C 'sygramdev@gmail.com'"
 alias i="sudo apt-get -y install "
+alias lspart="lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,TYPE"
 
 #====== directories =======
 

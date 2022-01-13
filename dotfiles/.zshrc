@@ -1,6 +1,8 @@
 # fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 fpath+=('/home/sygram/.zsh/pure')
 
+. $HOME/.asdf/asdf.sh
+
 autoload -U promptinit; promptinit
 
 autoload -U compinit
@@ -11,7 +13,7 @@ PURE_CMD_MAX_EXEC_TIME=10
 
 prompt pure
 
-source ~/.zsh/zplug/init.zsh
+source ~/.zplug/init.zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
@@ -66,15 +68,13 @@ if [ -d "$YARN_LOC" ]; then
   path_ladd "$YARN_LOC"
 fi
 
-# . $HOME/.asdf/asdf.sh
 
-# . $HOME/.asdf/completions/asdf.bash
+[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
+[ -f ~/repos/.asdf/asdf.sh ] && source ~/repos/.asdf/asdf.sh
 
-. $HOME/repos/.asdf/asdf.sh
-
-. $HOME/repos/.asdf/completions/asdf.bash
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
+source ~/.fzf/shell/completion.zsh
+source ~/.fzf/shell/key-bindings.zsh

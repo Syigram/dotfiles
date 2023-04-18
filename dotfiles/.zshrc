@@ -78,3 +78,6 @@ fi
 
 source ~/.fzf/shell/completion.zsh
 source ~/.fzf/shell/key-bindings.zsh
+
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8

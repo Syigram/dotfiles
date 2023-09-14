@@ -221,6 +221,8 @@ Plug 'nginx/nginx', { 'rtp': 'contrib/vim' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'github/copilot.vim'
+
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'martinda/Jenkinsfile-vim-syntax'

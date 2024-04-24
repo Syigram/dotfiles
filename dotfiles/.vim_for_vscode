@@ -466,8 +466,8 @@ set shortmess=a
 " Go to last active tab
 
 au TabLeave * let g:lasttab = tabpagenr()
--- nnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
--- vnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
+" -- nnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
+" -- vnoremap <silent> <Leader>b :exe "tabn ".g:lasttab<cr>
 
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -581,7 +581,7 @@ else
   let g:airline_symbols.linenr = ''
 endif
 
--- nnoremap <silent> <C-j> <C-w>j
--- nnoremap <silent> <C-k> :wincmd k<CR>
--- nnoremap <silent> <C-h> :wincmd h<CR>
--- nnoremap <silent> <C-l> :wincmd l<CR>
+" -- nnoremap <silent> <C-j> <C-w>j
+" -- nnoremap <silent> <C-k> :wincmd k<CR>
+" -- nnoremap <silent> <C-h> :wincmd h<CR>
+" -- nnoremap <silent> <C-l> :wincmd l<CR>

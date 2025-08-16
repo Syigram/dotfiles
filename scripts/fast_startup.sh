@@ -80,5 +80,6 @@ sudo chsh -s /bin/zsh sygram
 # cd ~/.vim/plugged/YouCompleteMe
 # python3 ./install.py --clang-completer --ts-completer
 
+sudo dpkg-reconfigure locales
 
 # Install GitKraken

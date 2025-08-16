@@ -74,7 +74,7 @@ function path_radd() {
 
 # Reload bashrc
 function so() {
-  source ~/.zsh/.zshrc
+  source ~/.zshrc
 }
 
 function clear_and_list(){
@@ -91,6 +91,17 @@ function poetry_add_all(){
   for item in $(cat $1); do
     poetry add "${item}"
   done
+}
+
+function upgrade_kernel(){
+  sudo apt -y update
+  sudo apt -y upgrade
+}
+
+function upgrade_ubuntu(){
+  sudo apt -y update
+  sudo apt -y upgrade
+  sudo apt -y dist-upgrade
 }
 
 function copysshkey() {

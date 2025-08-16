@@ -240,3 +240,10 @@ function apt_over_https() {
       software-properties-common
 }
 
+
+function purge_nginx(){
+  echo "Attempting to delete fastcgi_cache..."
+  sudo rm -rf /usr/share/nginx/fastcgi_cache
+  sudo service nginx restart
+  echo "Successfully purged fastcgi_cache"
+}

@@ -1,5 +1,5 @@
 # fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
-fpath+=('/home/sygram/.zsh/pure')
+fpath+=($HOME/.zsh/pure)
 
 . $HOME/.asdf/asdf.sh
 
